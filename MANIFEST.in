@@ -1,0 +1,2 @@
+recursive-include parkinglot/templates *
+recursive-include parkinglot/static *
