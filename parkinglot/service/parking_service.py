@@ -113,10 +113,9 @@ class ParkingServiceImpl(ParkingService):
 
     def get_status(self):
         if self.validate_parking_lot():
-            print("Slot No.".ljust(10) + "Registration No.".ljust(18) + "Color".ljust(31) + "\n")
+            print("Slot No.".ljust(12) + "Registration No".ljust(19) + "Colour")
             for slot, vehicle in self.parking_lot.get_slot_vehicle_map().items():
-                print(str(slot).ljust(10) + str(vehicle.get_reg_no()).ljust(18) + str(vehicle.get_color()).ljust(
-                    31) + "\n")
+                print(str(slot).ljust(12) + str(vehicle.get_reg_no()).ljust(19) + str(vehicle.get_color()))
 
     def get_available_slots_count(self) -> int:
         if self.validate_parking_lot():
@@ -126,13 +125,13 @@ class ParkingServiceImpl(ParkingService):
     def get_reg_num_from_color(self, color: str) -> list:
         if self.validate_parking_lot():
             reg_no = self.parking_lot.get_reg_num_from_color(color)
-            print(",".join(reg_no))
+            print(", ".join(reg_no))
             return reg_no
 
     def get_slot_nums_from_color(self, color: str) -> list:
         if self.validate_parking_lot():
             slot_nums = self.parking_lot.get_slot_nums_from_color(color)
-            print(",".join([str(slot) for slot in slot_nums]))
+            print(", ".join([str(slot) for slot in slot_nums]))
             return slot_nums
 
     def get_slot_no_from_reg_no(self, reg_no: str) -> int:

@@ -26,7 +26,7 @@ def command_mode(handler: ParkingHandler):
     Handler fot command mode
     """
     while True:
-        print_options()
+        # print_options()
         try:
             input_cmd = input()
             if input_cmd == "exit":
