@@ -1,6 +1,7 @@
 from unittest import TestCase
+
 from parkinglot.models import ParkingLot
-from parkinglot.tes .stub_methods import create_car, create_car_black, create_car_red
+from parkinglot.tests.stub_methods import create_car
 
 
 class ParkingLotTestCase(TestCase):
@@ -36,29 +37,26 @@ class ParkingLotTestCase(TestCase):
         parkinglot.park(car)
         self.assertEqual(parkinglot.is_full(), False)
         self.assertEqual(parkinglot.is_empty(), False)
-        self.assertEqual(parkinglot.get_availability(),parkinglot.get_capacity()-1)
-        self.assertNotEqual({},parkinglot.get_slot_vehicle_map())
-        self.assertGreater(0, parkinglot.unpark(1))
+        self.assertEqual(parkinglot.get_availability(), parkinglot.get_capacity() - 1)
+        self.assertNotEqual({}, parkinglot.get_slot_vehicle_map())
+        self.assertEqual(True, parkinglot.unpark(1))
         self.assertEqual(parkinglot.get_availability(), parkinglot.get_capacity())
         self.assertEqual(False, parkinglot.is_full())
-        self.assertEqual(True,parkinglot.is_empty())
+        self.assertEqual(True, parkinglot.is_empty())
 
     def test_from_color(self):
         """
-                Create a ParkingLot object and check color combination function
+        Create a ParkingLot object and check color combination function
         """
         parkinglot = ParkingLot(6)
         self.assertNotEqual(None, parkinglot)
         self.assertIsInstance(parkinglot, ParkingLot)
-        self.assertEqual(6,parkinglot.get_capacity())
-        self.assertEqual(True,parkinglot.is_empty() )
+        self.assertEqual(6, parkinglot.get_capacity())
+        self.assertEqual(True, parkinglot.is_empty())
         parkinglot.park(create_car("KA-01-HH-2701", "Blue"))
         parkinglot.park(create_car("KA-01-HH-2702", "Blue"))
         parkinglot.park(create_car("KA-01-HH-2703", "Black"))
         parkinglot.park(create_car("KA-01-HH-2704", "Red"))
-        self.assertEqual("KA-01-HH-2701,KA-01-HH-2702", parkinglot.get_reg_num_from_color("Blue"))
+        self.assertEqual(["KA-01-HH-2701", "KA-01-HH-2702"], parkinglot.get_reg_num_from_color("Blue"))
         self.assertEqual(3, parkinglot.get_slot_no_from_reg_no("KA-01-HH-2703"))
-        self.assertEqual(4, parkinglot.get_slot_nums_from_color("Red"))
-
-
-
+        self.assertEqual([4], parkinglot.get_slot_nums_from_color("Red"))
