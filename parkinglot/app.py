@@ -5,28 +5,11 @@ from parkinglot.logger import logger
 from parkinglot.service import ParkingServiceImpl
 
 
-def print_options():
-    """
-    Print Option Menu
-    """
-    out = '***************Enter Command***************\n'
-    out += '1) create_parking_lot <capacity>\n'
-    out += '2) park <car_reg_number> <car_color>\n'
-    out += '3) leave <slot_number>\n'
-    out += '4) status\n'
-    out += '5) registration_numbers_for_cars_with_color <car_color>\n'
-    out += '6) slot_numbers_for_cars_with_color <car_color>\n'
-    out += '7) slot_number_for_registration_number <car_reg_no>\n'
-    out += '8) exit\n'
-    print(out)
-
-
 def command_mode(handler: ParkingHandler):
     """
     Handler fot command mode
     """
     while True:
-        # print_options()
         try:
             input_cmd = input()
             if input_cmd == "exit":
